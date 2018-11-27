@@ -1,7 +1,6 @@
-Test phat
+ARM template Customization
 
 
-
-<a href="https://azuredeploy.net/?repository=https://github.com/khoi-thinh/hpc-edit/blob/master/Nikko-HPC-Template.json" target="_blank">
+<a <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fkhoi-thinh%2Fhpc-edit%2Fmaster%2FNikko-HPC-Template.json">Deploy to Azure</a>
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
