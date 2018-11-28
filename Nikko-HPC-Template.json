@@ -167,7 +167,7 @@
     "virtualNetworkName": "[concat(parameters('clusterName'),'DXCVNET')]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]",
-    "publicIPName": "[concat(parameters('clusterName'),'DXCPUBLICIPNAME')]",
+    "publicIPName": "[concat(parameters('clusterName'),'dxcpublicip')]",
     "publicIPDNSNameLabel": "[concat(toLower(parameters('clusterName')), uniqueString(resourceGroup().id))]",
     "publicIPAddressType": "Static",
     "availabilitySetNameHN": "[concat(parameters('clusterName'), '-avset')]",
