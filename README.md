@@ -1,11 +1,11 @@
 ARM template Customization
 
-仮想ネットワーク名
-サブネット名
-IPアドレス範囲
-Public IP名
-NSG名
-Public IPが静的IP
+- 仮想ネットワーク名
+- サブネット名
+- IPアドレス範囲
+- Public IP名
+- NSG名
+- Public IPが静的IP
 
 定義可能
 
