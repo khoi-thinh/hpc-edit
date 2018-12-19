@@ -41,7 +41,7 @@
     },
     "computeNodeNamePrefix": {
       "type": "string",
-      "defaultValue": "DXCNode",
+      "defaultValue": "hpc-dev-calc",
       "minLength": 1,
       "maxLength": 12,
       "metadata": {
@@ -162,12 +162,12 @@
     "storageAccountName": "[concat('hpc', uniqueString(resourceGroup().id, parameters('clusterName')))]",
     "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts',variables('storageAccountName'))]",
     "addressPrefix": "10.20.0.0/16",
-    "subnet1Name": "DXCSUBNET1",
+    "subnet1Name": "hpc-dev-vm-subnet",
     "subnet1Prefix": "10.20.0.0/24",
-    "virtualNetworkName": "[concat(parameters('clusterName'),'DXCVNET')]",
+    "virtualNetworkName": "hpc-dev-VNET",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]",
-    "publicIPName": "[concat(parameters('clusterName'),'dxcpublicip')]",
+    "publicIPName": "[concat(parameters('clusterName'),'publicip')]",
     "publicIPDNSNameLabel": "[concat(toLower(parameters('clusterName')), uniqueString(resourceGroup().id))]",
     "publicIPAddressType": "Static",
     "availabilitySetNameHN": "[concat(parameters('clusterName'), '-avset')]",
@@ -177,7 +177,7 @@
     "uniqueSuffix": "[uniqueString(variables('subnetRef'))]",
     "uniqueNicSuffix": "[concat('-nic-', variables('uniqueSuffix'))]",
     "nicNameHN": "[concat(parameters('clusterName'), variables('uniqueNicSuffix'))]",
-    "nsgName": "[concat('DXCNETSGNAME-',uniquestring(resourceGroup().id, variables('subnetRef')))]",
+    "nsgName": "dev-vm-nsg",
     "rdmaVMSizes": [
       "Standard_A8",
       "Standard_A9",
