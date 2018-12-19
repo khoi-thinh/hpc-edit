@@ -177,7 +177,7 @@
     "uniqueSuffix": "[uniqueString(variables('subnetRef'))]",
     "uniqueNicSuffix": "[concat('-nic-', variables('uniqueSuffix'))]",
     "nicNameHN": "[concat(parameters('clusterName'), variables('uniqueNicSuffix'))]",
-    "nsgName": "dev-vm-nsg",
+    "nsgName": "hpc-dev-vm-nsg",
     "rdmaVMSizes": [
       "Standard_A8",
       "Standard_A9",
