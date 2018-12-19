@@ -181,8 +181,6 @@
     "rdmaVMSizes": [
       "Standard_A8",
       "Standard_A9",
-      "Standard_H8",
-      "Standard_H16",
       "Standard_H16r",
       "Standard_H16mr",
       "Standard_NC24r",
