@@ -41,7 +41,7 @@
     },
     "computeNodeNamePrefix": {
       "type": "string",
-      "defaultValue": "hpc-dev-calc",
+      "defaultValue": "hpc-dev-comp-",
       "minLength": 1,
       "maxLength": 12,
       "metadata": {
