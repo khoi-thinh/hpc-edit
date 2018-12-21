@@ -5,9 +5,9 @@
     "clusterName": {
       "type": "string",
       "minLength": 3,
-      "maxLength": 30,
+      "maxLength": 15,
       "metadata": {
-        "description": "The name of the HPC cluster, also used as the head node name. It must contain between 3 and 30 characters with lowercase letters and numbers, and must start with a letter."
+        "description": "The name of the HPC cluster, also used as the head node name. It must contain between 3 and 15 characters with lowercase letters and numbers, and must start with a letter."
       }
     },
     "headNodeOS": {
@@ -41,11 +41,11 @@
     },
     "computeNodeNamePrefix": {
       "type": "string",
-      "defaultValue": "hpc-dev-comp-",
+      "defaultValue": "hpcdev-comp-",
       "minLength": 3,
-      "maxLength": 30,
+      "maxLength": 15,
       "metadata": {
-        "description": "The name prefix of the compute nodes. It must be no more than 30 characters, begin with a letter, and contain only letters, numbers and hyphens. For example, if 'IaaSCN' is specified, the compute node names will be 'IaaSCN000', 'IaaSCN001', ..."
+        "description": "The name prefix of the compute nodes. It must be no more than 15 characters, begin with a letter, and contain only letters, numbers and hyphens. For example, if 'IaaSCN' is specified, the compute node names will be 'IaaSCN000', 'IaaSCN001', ..."
       }
     },
     "computeNodeNumber": {
