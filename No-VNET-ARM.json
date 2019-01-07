@@ -533,7 +533,6 @@
       "type": "Microsoft.Resources/deployments",
       "name": "[concat('create', parameters('computeNodeNamePrefix'), padLeft(string(copyIndex()), 3, '0'))]",
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('existingVirtualNetworkName'))]",
         "cnAvailabilitySetCopy"
       ],
       "copy": {
