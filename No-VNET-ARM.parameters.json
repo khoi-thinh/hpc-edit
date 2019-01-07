@@ -5,6 +5,9 @@
         "existingVirtualNetworkName": {
             "value": "arm-vnet"
         },
+          "existingVirtualNetworkResourceGroup": {  
+            "value": "arm-test" 
+        }, 
         "subnetName": {
             "value": "Subnet1"
     }
