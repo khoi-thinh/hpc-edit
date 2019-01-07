@@ -47,7 +47,7 @@
     },
       "existingVirtualNetworkResourceGroup":{  
       "type":"string",
-      "defaultValue":"[resourceGroup().name]",
+      "defaultValue":"arm-test",
       "metadata":{  
          "description":"Name of the existing VNET resource group"
       }
