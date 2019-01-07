@@ -400,7 +400,6 @@
       "name": "[variables('nicNameHN')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('existingVirtualNetworkName'))]",
         "[concat('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]",
         "Microsoft.Resources/deployments/setupClusterPublicIP"
       ],
