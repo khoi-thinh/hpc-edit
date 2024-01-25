@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Management</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        .button-container {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Server Management</h1>
+
+<!-- Form -->
+<form id="serverForm">
+    <label for="serverName">Server Name:</label>
+    <input type="text" id="serverName" required>
+
+    <label for="ip">IP:</label>
+    <input type="text" id="ip" required>
+
+    <label for="notes">Notes:</label>
+    <input type="text" id="notes" required>
+
+    <!-- Button container -->
+    <div class="button-container">
+        <button type="button" onclick="addServer()">Add</button>
+        <button type="button" onclick="editServer()">Edit</button>
+        <button type="button" onclick="deleteServer()">Delete</button>
+        <button type="button" onclick="getServer()">Get</button>
+        <button type="button" onclick="saveChanges()">Save Changes</button>
+    </div>
+</form>
+
+<!-- Display area for server entries -->
+<table id="serverTable" style="display: none;">
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>Server Name</th>
+            <th>IP</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody id="serverList">
+        <!-- Entries will be displayed here -->
+    </tbody>
+</table>
+
+<script>
+    // Global variable to store the selected row for editing
+    var selectedRow = null;
+
+    function addServer() {
+        var serverName = document.getElementById('serverName').value;
+        var ip = document.getElementById('ip').value;
+        var notes = document.getElementById('notes').value;
+
+        // Basic validation
+        if (!serverName || !ip || !notes) {
+            alert("All fields are required");
+            return;
+        }
+
+        // Create a new server entry with a checkbox
+        var entry = document.createElement('tr');
+        entry.innerHTML = `<td><input type="checkbox" class="entry-checkbox"></td><td>${serverName}</td><td>${ip}</td><td>${notes}</td>`;
+
+        // Append the entry to the server list
+        document.getElementById('serverList').appendChild(entry);
+
+        // Show the server list table
+        document.getElementById('serverTable').style.display = 'table';
+
+        // Clear the form fields
+        document.getElementById('serverName').value = '';
+        document.getElementById('ip').value = '';
+        document.getElementById('notes').value = '';
+    }
+
+    function editServer() {
+        // Get all checkboxes
+        var checkboxes = document.getElementsByClassName('entry-checkbox');
+
+        // Check if any checkbox is checked
+        var checkedCheckbox = Array.from(checkboxes).find(checkbox => checkbox.checked);
+
+        if (checkedCheckbox) {
+            // Set the selected row for editing
+            selectedRow = checkedCheckbox.parentNode.parentNode;
+
+            // Populate form fields with data from the selected row
+            document.getElementById('serverName').value = selectedRow.cells[1].textContent;
+            document.getElementById('ip').value = selectedRow.cells[2].textContent;
+            document.getElementById('notes').value = selectedRow.cells[3].textContent;
+        } else {
+            alert("Please select a row to edit");
+        }
+    }
+
+    function deleteServer() {
+        // Get all checkboxes
+        var checkboxes = document.getElementsByClassName('entry-checkbox');
+
+        // Check if any checkbox is checked
+        var checkedCheckbox = Array.from(checkboxes).find(checkbox => checkbox.checked);
+
+        if (checkedCheckbox) {
+            // Remove the row corresponding to the checked checkbox
+            checkedCheckbox.parentNode.parentNode.remove();
+        } else {
+            alert("Please select a row to delete");
+        }
+
+        // Hide the server list table if there are no rows
+        if (document.getElementById('serverList').childElementCount === 0) {
+            document.getElementById('serverTable').style.display = 'none';
+        }
+    }
+
+    function getServer() {
+        // Show the server list table
+        document.getElementById('serverTable').style.display = 'table';
+
+        // Retrieve all data and display in console
+        var serverData = [];
+        var tableRows = document.getElementById('serverList').getElementsByTagName('tr');
+
+        for (var i = 0; i < tableRows.length; i++) {
+            var rowCells = tableRows[i].getElementsByTagName('td');
+            var rowData = {
+                'Server Name': rowCells[1].textContent,
+                'IP': rowCells[2].textContent,
+                'Notes': rowCells[3].textContent
+            };
+            serverData.push(rowData);
+        }
+
+        console.log('All Server Data:', serverData);
+    }
+
+    function saveChanges() {
+        // Check if a row is selected for editing
+        if (selectedRow) {
+            // Update the selected row with the new data
+            selectedRow.cells[1].textContent = document.getElementById('serverName').value;
+            selectedRow.cells[2].textContent = document.getElementById('ip').value;
+            selectedRow.cells[3].textContent = document.getElementById('notes').value;
+
+            // Clear the form fields
+            document.getElementById('serverName').value = '';
+            document.getElementById('ip').value = '';
+            document.getElementById('notes').value = '';
+
+            // Deselect the row
+            selectedRow = null;
+        } else {
+            alert("No row selected for editing");
+        }
+    }
+</script>
+
+</body>
+</html>
