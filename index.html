@@ -141,25 +141,59 @@
         }
     }
 
-    function getServer() {
+    async function getServer() {
+        try {
+            // Replace 'YOUR_API_ENDPOINT' with your actual API Gateway endpoint
+            const response = await fetch('https://api-gateway-url/your-resource', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any additional headers if needed
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            // Extract relevant data from the fetched data
+            const externalData = {
+                name: data.name,
+                ip: data.ip,
+                notes: data.notes,
+            };
+
+            // Display the external data in the console
+            console.log('External Server Data:', externalData);
+
+            // Update the serverData array
+            const serverData = [
+                externalData, // Add the external data to the serverData array
+                // ... (any existing data)
+            ];
+
+            // Display the updated serverData array in the console
+            console.log('All Server Data:', serverData);
+
+            // Display the external data in the table (for demonstration purposes)
+            displayDataInTable(externalData);
+        } catch (error) {
+            console.error('Error fetching external data:', error);
+        }
+    }
+
+    function displayDataInTable(data) {
+        // Create a new server entry with a checkbox using the external data
+        var entry = document.createElement('tr');
+        entry.innerHTML = `<td><input type="checkbox" class="entry-checkbox"></td><td>${data.name}</td><td>${data.ip}</td><td>${data.notes}</td>`;
+
+        // Append the entry to the server list
+        document.getElementById('serverList').appendChild(entry);
+
         // Show the server list table
         document.getElementById('serverTable').style.display = 'table';
-
-        // Retrieve all data and display in console
-        var serverData = [];
-        var tableRows = document.getElementById('serverList').getElementsByTagName('tr');
-
-        for (var i = 0; i < tableRows.length; i++) {
-            var rowCells = tableRows[i].getElementsByTagName('td');
-            var rowData = {
-                'Server Name': rowCells[1].textContent,
-                'IP': rowCells[2].textContent,
-                'Notes': rowCells[3].textContent
-            };
-            serverData.push(rowData);
-        }
-
-        console.log('All Server Data:', serverData);
     }
 
     function saveChanges() {
